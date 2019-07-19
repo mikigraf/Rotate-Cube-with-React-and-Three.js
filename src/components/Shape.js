@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import * as THREE from "three";
-// const OrbitControls = require("three-orbit-controls")(THREE);
+const OrbitControls = require("three-orbit-controls")(THREE);
 class Shape extends Component {
   constructor(props) {
     super(props);
     this.animate = this.animate.bind(this);
     this.addCube = this.addCube.bind(this);
     this.initializeCamera = this.initializeCamera.bind(this);
-    // this.initializeOrbits = this.initializeOrbits.bind(this);
+    this.initializeOrbits = this.initializeOrbits.bind(this);
   }
 componentDidMount() {
     const width = this.mount.clientWidth;
@@ -16,10 +16,10 @@ componentDidMount() {
     this.scene = document.querySelector('a-scene').object3D;
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     this.renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
-    // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
-    // this.initializeOrbits();
+    this.initializeOrbits();
     this.initializeCamera();
     
     const geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -32,11 +32,11 @@ componentWillUnmount() {
     cancelAnimationFrame(this.frameId);
     this.mount.removeChild(this.renderer.domElement);
   }
-// initializeOrbits() {
-//     this.controls.rotateSpeed = 1.0;
-//     this.controls.zoomSpeed = 4.2;
-//     this.controls.panSpeed = 4.8;
-//   }
+initializeOrbits() {
+    this.controls.rotateSpeed = 1.0;
+    this.controls.zoomSpeed = 4.2;
+    this.controls.panSpeed = 4.8;
+  }
 initializeCamera() {
     this.camera.position.x = 0;
     this.camera.position.y = 0;
