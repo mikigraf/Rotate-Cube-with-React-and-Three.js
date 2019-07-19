@@ -2,11 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Shape from './components/Shape'
+
+import 'aframe'
+import { Scene } from 'react-aframe-ar'
 function App() {
   return (
-    <div className="App">
+    <Scene>
       <Shape />
-    </div>
+    </Scene>
   );
 }
 
